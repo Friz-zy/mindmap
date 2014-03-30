@@ -148,7 +148,7 @@ var API_4_MINDMAP = function(){  //singleton - при многократном �
 			 	 	var icon = "<div class='type_icon'><i class='"+icon_type+"'></i></div>";
 		 	 	 }
 		 	 	 
-			 	 var answer = icon+"<div class='n_title' contenteditable='true'>"+element.title+
+			 	 var answer = icon+"<div class='n_title'>"+element.title+
 			 	 			       "</div><div class='contextmenu'></div>"+collapser_html;
 			 	 return answer; 
 		 	 }
