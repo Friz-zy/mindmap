@@ -170,7 +170,7 @@ var API_4_MINDMAP = function(){  //singleton - при многократном �
 			 	 	var icon = "<div class='type_icon'><i class='"+icon_type+"'></i></div>";
 		 	 	 }
 		 	 	 
-			 	 var answer = icon+"<div class='n_title'>"+element.title+
+			 	 var answer = icon+"<div class='n_title' contenteditable='true'>"+element.title+
 			 	 			       "</div><div class='contextmenu'></div>"+collapser_html;
 			 	 return answer; 
 		 	 }
@@ -275,7 +275,7 @@ var API_4_MINDMAP = function(){  //singleton - при многократном �
 			 	 	 var n_title_text = $(this).html();
 			 	 	 var id = $(this).parents("li:first").attr("myid");
 			 	 	 if(n_title_text.length==0) n_title_text = "New item"; //если всё стёрли, заголовок по умолч.
-			 	 	 $(this).html( strip_tags(n_title_text) ); //убираем теги и переносы строк
+			 	 	 //$(this).html( strip_tags(n_title_text) ); //убираем теги и переносы строк
 			 	 	 this_api.jsFind(id, {title:n_title_text}); //сохраняем новый заголовок в массиве и базе данных
 				 	 onResize(); //перерисовываем линии
 			 	 });
