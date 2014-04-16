@@ -6,33 +6,25 @@ var API_4_MINDMAP = function(){  //singleton - при многократном �
 		     var my_all_data = {}; //главный массив с данными
 		      
 		     var my_all_data_template = { //задаём первоначальные данные, если это первый запуск
-				 "n1":{ id:1, parent_id:0, title:"Карта ума<br>своими руками<br>"+
-    			 "с хранением данных<br>в браузере.<br>Javascript" },
-    			 "n2":{ id:2, parent_id:1, title:"Изучим", icon:"icon-gift" },
-    			 "n3":{ id:3, parent_id:2, title:"Рисуем линии между элементами", icon:"icon-flow-line" }, 
-    			 "n5":{ id:5, parent_id:3, title:"Используем плагин jsPlumb", icon: "icon-link" }, 
-    			 "n4":{ id:4, parent_id:3, title:"Каждая линия - отдельный SVG" }, 
-    			 "n7":{ id:7, parent_id:6, title:"Используем плагин jQuery ContextMenu", icon: "icon-link" }, 
-    			 "n8":{ id:8, parent_id:1, title:"Объём кода", icon: "icon-lamp" }, 
-    			 "n9":{ id:9, parent_id:8, title:"Javascript + jQuery — 520 строк" },
-    			 "n10":{ id:10, parent_id:2, title:"Сохраненяем данные в браузере", icon: "icon-floppy-1" },
-    			 "n11":{ id:11, parent_id:17, title:"IndexedDB" },
-    			 "n12":{ id:12, parent_id:17, title:"webSQL" },
-    			 "n13":{ id:13, parent_id:17, title:"LocalStorage" },
-    			 "n14":{ id:14, parent_id:10, title:"Используем плагин Ydn.db", icon: "icon-link" },
-    			 "n15":{ id:15, parent_id:10, title:"Объём данных не ограничен" },
-    			 "n16":{ id:16, parent_id:2, title:"Используем синглтон в Javascript", icon: "icon-cd" },
-    			 "n17":{ id:17, parent_id:10, title:"Доступны" },
-    			 "n18":{ id:18, parent_id:6, title:"Динамическое добавление пунктов" },
-    			 "n20":{ id:20, parent_id:8, title:"CSS — 220 строк" },
-    			 "n19":{ id:19, parent_id:8, title:"HTML — 50 строк" },
-    			 "n22":{ id:22, parent_id:16, title:"Это позволяет избежать глобальных переменных" },
-    			 "n23":{ id:23, parent_id:16, title:"Наводим порядок среди функций" },
-    			 "n24":{ id:24, parent_id:2, title:"Используем иконочный шрифт", icon: "icon-emo-wink" },
-    			 "n6":{ id:6, parent_id:2, title:"Контекстное меню", icon: "icon-list" }, 
-    			 "n25":{ id:25, parent_id:24, title:"Используем набор шрифтов Fontello", icon: "icon-link" },
+				 "n1":{ id:1, parent_id:0, title:"Mind Map for browser" },
+    			 "n2":{ id:2, parent_id:1, title:"study", icon:"icon-gift" },
+    			 "n3":{ id:3, parent_id:2, title:"Draw a line between the elements", icon:"icon-flow-line" }, 
+    			 "n5":{ id:5, parent_id:3, title:"Use plugin jsPlumb", icon: "icon-link" }, 
+    			 "n4":{ id:4, parent_id:3, title:"Each line - separate SVG" }, 
+    			 "n7":{ id:7, parent_id:6, title:"Use plugin jQuery ContextMenu", icon: "icon-link" }, 
+    			 "n8":{ id:8, parent_id:1, title:"Code amount", icon: "icon-lamp" }, 
+    			 "n9":{ id:9, parent_id:8, title:"Javascript + jQuery — 520 lines" },
+    			 "n16":{ id:16, parent_id:2, title:"Use Singleton in Javascript", icon: "icon-cd" },
+    			 "n18":{ id:18, parent_id:6, title:"Dynamically adding items" },
+    			 "n20":{ id:20, parent_id:8, title:"CSS — 220 lines" },
+    			 "n19":{ id:19, parent_id:8, title:"HTML — 50 lines" },
+    			 "n22":{ id:22, parent_id:16, title:"This helps avoid global variables" },
+    			 "n23":{ id:23, parent_id:16, title:"Restore order among the functions" },
+    			 "n24":{ id:24, parent_id:2, title:"Use the icons font", icon: "icon-emo-wink" },
+    			 "n6":{ id:6, parent_id:2, title:"Context menu", icon: "icon-list" }, 
+    			 "n25":{ id:25, parent_id:24, title:"Use a set of fonts Fontello", icon: "icon-link" },
     			 "n27":{ id:27, parent_id:2, title:"Drag&Drop jQuery UI", icon: "icon-link" },
-    			 "n26":{ id:26, parent_id:24, title:"Векторные иконки с идеальным сглаживанием" }
+    			 "n26":{ id:26, parent_id:24, title:"Vector icons with perfect anti-aliasing" }
     		   };
 		 	
 
@@ -122,7 +114,7 @@ var API_4_MINDMAP = function(){  //singleton - при многократном �
 		 	 
 
 		 	 this.jsDeleteById = function(id) { //удаляем всех детей и потомков этого родителя
-		 	 	 if(confirm("Удалить элемент №"+id+" и его содержимое?")) {
+		 	 	 if(confirm("Remove the element №"+id+" and all scions?")) {
 		 	 	 	var childs = this_api.jsRecursiveByParent(id);
 		 	 	 	$.each(childs, function(i, el){
 		 	 	 		api4mindmap.jsFind(el.id, {del:1}); //"джихад" - сначала удаляем детей и всех потомков
@@ -282,7 +274,7 @@ var API_4_MINDMAP = function(){  //singleton - при многократном �
 			 	 $("#mindmap").on("blur", ".n_title", function(){ //при уводе фокуса, сохраняем заголовок
 			 	 	 var n_title_text = $(this).html();
 			 	 	 var id = $(this).parents("li:first").attr("myid");
-			 	 	 if(n_title_text.length==0) n_title_text = "Новый элемент"; //если всё стёрли, заголовок по умолч.
+			 	 	 if(n_title_text.length==0) n_title_text = "New item"; //если всё стёрли, заголовок по умолч.
 			 	 	 $(this).html( strip_tags(n_title_text) ); //убираем теги и переносы строк
 			 	 	 this_api.jsFind(id, {title:n_title_text}); //сохраняем новый заголовок в массиве и базе данных
 				 	 onResize(); //перерисовываем линии
@@ -372,7 +364,7 @@ function jsGetIcons(n) { //формируем многоуровневое ме�
 		});
 
 		answer["icon-group"+icon_group]	= {};
-		answer["icon-group"+icon_group]	= {name:"Набор №"+(parseInt(j)+1), icon: "icon-"+icons[j][0], items: sub_icons};
+		answer["icon-group"+icon_group]	= {name:"Set №"+(parseInt(j)+1), icon: "icon-"+icons[j][0], items: sub_icons};
 		
 	});	
 			
@@ -413,7 +405,7 @@ function jsMakeDroppable() { //делаем все элементы перета
 	   				$(".ui-draggable-dragging").remove(); //удаляем клон объекта, который перетаскивали
 
             	} else {
-					alert("Не могу перенести элемент внутрь самого себя");
+					alert("I can not move the item into itself");
             	}
             	
 				}
@@ -476,11 +468,11 @@ function jsDoFirst() {
 	           api4mindmap.jsRefreshMindmap(id);
             } else if(key == "add_down") { //добавляем вниз
             	var parent_id = api4mindmap.jsFind(id).parent_id;
-	            var new_id = api4mindmap.jsAddNew(parent_id, "Новый элемент");
+	            var new_id = api4mindmap.jsAddNew(parent_id, "New item");
 	            api4mindmap.jsRefreshMindmap();
 	            $("#node_"+new_id+" .n_title").focus();
             } else if(key == "add_right") { //добавляем внутрь
-	            var new_id = api4mindmap.jsAddNew(id, "Новый элемент");
+	            var new_id = api4mindmap.jsAddNew(id, "New item");
 	            $(this).parents("li").removeClass("hide");
 	            api4mindmap.jsRefreshMindmap();
 	            $("#node_"+new_id+" .n_title").focus();
@@ -488,11 +480,11 @@ function jsDoFirst() {
         },
         delay:0,
         items: {
-        	"add_down": {"name":"Добавить вниз", "icon": "icon-down-1"},
-        	"add_right": {"name":"Добавить вправо", "icon": "icon-right-1"},
+        	"add_down": {"name":"Add down", "icon": "icon-down-1"},
+        	"add_right": {"name":"Add right", "icon": "icon-right-1"},
         	"sep1": "--------",
-        	"delete": {"name":"Удалить", "icon": "icon-trash"},
-            "context_make_did1011": {"name": "Иконка", "icon": "icon-emo-wink", 
+        	"delete": {"name":"Remove", "icon": "icon-trash"},
+            "context_make_did1011": {"name": "Icon", "icon": "icon-emo-wink", 
 	            "items": icons_html //сгенерированные пункты меню с иконками
             }
 		}
