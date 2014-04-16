@@ -1,3 +1,7 @@
+Modified by frizzy for https://github.com/Friz-zy/WYSIWYG
+=========================================================
+
+
 mindmap
 =======
 
