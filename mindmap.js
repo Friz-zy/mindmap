@@ -38,8 +38,38 @@ var API_4_MINDMAP = function(){  //singleton - при многократном �
 
 		 	 this.jsLoadAllFromDB = function() { //загружаем весь массив из базы данных браузера или из массива
 		 	 	 my_all_data = {}; //обнуляем данные
-	    		 my_all_data = my_all_data_template;
-
+		 	 	 
+		 	 	 var all = [];
+                 var title;
+                 var icon;
+                 var parent_id = 0;
+                 var id;
+                 var n_li = 0;
+                 var item;
+                 
+		 	 	 var mindmap = document.getElementById('mindmap');
+                 var elems = mindmap.getElementsByTagName('*');
+                 if (elems.length == 0) my_all_data = my_all_data_template;
+                 else {
+                    for(var i =0; i < elems.length; i++){
+                        item = elems[i]
+                        if (item.tagName == "UL" && item.className == "childs") parent_id = item.getAttribute("myid").toString(10)
+                        if (item.tagName == "LI") id =  item.getAttribute("myid").toString(10)
+                        if (item.tagName == "I")  n_li = n_li + 1;
+                        if (n_li == 2){
+                            icon = item.className;
+                            n_li = 0;
+                        };
+                        if (item.className == "n_title ui-draggable ui-droppable"){
+                            title = item.innerHTML;
+                            my_all_data['n'+id] = {};
+                            my_all_data['n'+id].id = id;
+                            my_all_data['n'+id].parent_id = parent_id;
+                            my_all_data['n'+id].title = title;
+                            my_all_data['n'+id].icon = icon;
+                        };
+                    };
+                 };
 		 	 }
 		 	
 		 	 this.jsFind = function(id, changes) { //возвращаем элемент с id или меняем его параметры
